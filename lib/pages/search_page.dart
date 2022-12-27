@@ -99,9 +99,7 @@ class _SearchLocationState extends State<SearchLocation> {
                         .searchLocation(),
                     builder: (context, snapshot) => snapshot.connectionState ==
                             ConnectionState.waiting
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? const Center(child: CircularProgressIndicator())
                         : Consumer<MapProvider>(
                             builder: (context, location, child) => location
                                         .mapItem.place ==
@@ -158,16 +156,20 @@ class _SearchLocationState extends State<SearchLocation> {
                                     physics: const BouncingScrollPhysics(),
                                   ),
                             child: const Center(
-                              child: Text('Empty',
-                                  style: TextStyle(color: _secondaryColor)),
+                              child: Text(
+                                'Empty',
+                                style: TextStyle(color: _secondaryColor),
+                              ),
                             ),
                           ),
                   ),
                 )
               : const Flexible(
                   child: Center(
-                    child: Text('Kota tidak ditemukan!',
-                        style: TextStyle(color: _secondaryColor)),
+                    child: Text(
+                      'Kota tidak ditemukan!',
+                      style: TextStyle(color: _secondaryColor),
+                    ),
                   ),
                 ),
         ],
