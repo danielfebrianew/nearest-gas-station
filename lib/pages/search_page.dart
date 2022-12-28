@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 import '../widgets/map_bottom_sheet.dart';
 
-const _mainColor = Color(0xff26264D);
-const _secondaryColor = Color(0xffDBDBE5);
+const _mainColor = Color(0xffE26569);
+const _secondaryColor = Color(0xffF2BABC);
 
 class SearchLocation extends StatefulWidget {
   const SearchLocation({super.key});
