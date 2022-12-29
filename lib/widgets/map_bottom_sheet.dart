@@ -19,8 +19,11 @@ class MapBottomSheet extends StatelessWidget {
 
     var size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
         color: _secondaryColor,
       ),
       child: Padding(

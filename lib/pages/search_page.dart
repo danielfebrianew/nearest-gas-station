@@ -47,38 +47,11 @@ class _SearchLocationState extends State<SearchLocation> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 200),
+          const SizedBox(height: 160),
           Container(
             alignment: Alignment.center,
             height: 60,
             width: 300,
-            child: DropdownButtonFormField(
-              hint: const Text(
-                'Pilih SPBU',
-                style: TextStyle(color: _secondaryColor),
-              ),
-              value: selectedValue,
-              items: dropdownItems,
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedValue = newValue!;
-                  _cityController.text.isNotEmpty ? _savePlace() : null;
-                });
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: _mainColor, width: 3),
-                ),
-                filled: true,
-                fillColor: _mainColor,
-                focusColor: _mainColor,
-              ),
-              dropdownColor: _mainColor,
-              style: const TextStyle(
-                  color: _secondaryColor, fontWeight: FontWeight.bold),
-              iconEnabledColor: _secondaryColor,
-            ),
           ),
           const SizedBox(height: 15),
           _cityField(),
@@ -154,7 +127,7 @@ class _SearchLocationState extends State<SearchLocation> {
         style: const TextStyle(
           color: _secondaryColor,
         ),
-        cursorColor: const Color.fromRGBO(255, 163, 26, 1),
+        cursorColor: _secondaryColor,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -188,25 +161,5 @@ class _SearchLocationState extends State<SearchLocation> {
         () => {searchPlaces = value},
       ),
     );
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(
-        value: "Pertamina",
-        child: Text(
-          "Pertamina",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      const DropdownMenuItem(
-        value: "Vivo",
-        child: Text(
-          "Vivo",
-          style: TextStyle(color: Colors.white),
-        ),
-      )
-    ];
-    return menuItems;
   }
 }
