@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 import '../widgets/map_bottom_sheet.dart';
 
-const _mainColor = Color(0xffE26569);
-const _secondaryColor = Color(0xffF2BABC);
+const _mainColor = Color(0xff26403B);
+const _secondaryColor = Color(0xffB3D1CB);
 
 class SearchLocation extends StatefulWidget {
   const SearchLocation({super.key});
@@ -42,17 +42,21 @@ class _SearchLocationState extends State<SearchLocation> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xff4A4A71),
+      alignment: Alignment.center,
+      color: _secondaryColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 15),
+          const SizedBox(height: 200),
           Container(
             alignment: Alignment.center,
             height: 60,
             width: 300,
             child: DropdownButtonFormField(
-              hint: const Text('Pilih SPBU'),
+              hint: const Text(
+                'Pilih SPBU',
+                style: TextStyle(color: _secondaryColor),
+              ),
               value: selectedValue,
               items: dropdownItems,
               onChanged: (String? newValue) {
@@ -89,7 +93,7 @@ class _SearchLocationState extends State<SearchLocation> {
             }),
             child: const Text(
               "Search",
-              style: TextStyle(color: _secondaryColor),
+              style: TextStyle(color: Colors.white),
             ),
           ),
           _cityController.text.isNotEmpty
@@ -113,44 +117,6 @@ class _SearchLocationState extends State<SearchLocation> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                         color: _mainColor,
-                                      ),
-                                      child: ListTile(
-                                        enabled: true,
-                                        leading: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: _secondaryColor),
-                                          onPressed: () {
-                                            showModalBottomSheet(
-                                              shape:
-                                                  const RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.vertical(
-                                                  top: Radius.circular(20),
-                                                ),
-                                              ),
-                                              context: context,
-                                              builder: (ctx) => MapBottomSheet(
-                                                  place: location
-                                                      .mapPlaces[index]),
-                                            );
-                                          },
-                                          child: const Text(
-                                            'Lihat',
-                                            style: TextStyle(
-                                              color: _mainColor,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w700,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                            ),
-                                          ),
-                                        ),
-                                        title: Text(
-                                          location.mapPlaces[index].displayName,
-                                          style: const TextStyle(
-                                              color: _secondaryColor,
-                                              fontSize: 13),
-                                        ),
                                       ),
                                     ),
                                     physics: const BouncingScrollPhysics(),
@@ -202,6 +168,7 @@ class _SearchLocationState extends State<SearchLocation> {
           labelText: 'Kota',
           labelStyle: const TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
+            fontWeight: FontWeight.w600,
           ),
           contentPadding: const EdgeInsets.all(15),
         ),
@@ -227,11 +194,17 @@ class _SearchLocationState extends State<SearchLocation> {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(
         value: "Pertamina",
-        child: Text("Pertamina"),
+        child: Text(
+          "Pertamina",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       const DropdownMenuItem(
         value: "Vivo",
-        child: Text("Vivo"),
+        child: Text(
+          "Vivo",
+          style: TextStyle(color: Colors.white),
+        ),
       )
     ];
     return menuItems;

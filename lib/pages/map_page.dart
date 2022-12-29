@@ -117,15 +117,11 @@ class _MapPageState extends State<MapPage> {
                         ),
                   child: const Flexible(
                     child: Center(
-                      child: Text('Got no places yet, start search some!'),
+                      child: Text('Empty'),
                     ),
                   ),
                 ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _moveToCurrent,
-        child: Icon(icon),
       ),
     );
   }
@@ -144,7 +140,7 @@ class _MapPageState extends State<MapPage> {
               padding: const EdgeInsets.all(0),
               icon: const Icon(
                 Icons.location_on,
-                color: Colors.red,
+                color: Colors.green,
               ),
               onPressed: () => {
                 _mapController.move(LatLng(e.lat, e.lon), 12),

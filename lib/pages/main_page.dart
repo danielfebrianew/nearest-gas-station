@@ -10,20 +10,20 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => MainPageState();
 }
 
-const _mainColor = Color(0xff26264D);
-const _secondaryColor = Color(0xffDBDBE5);
+const _mainColor = Color(0xff26403B);
+const _secondaryColor = Color(0xffB3D1CB);
 
 class MainPageState extends State<MainPage> {
   List<Place>? searchPlaces;
+  int _currentIndex = 0;
+  List<Widget> pages = const [SearchLocation(), MapPage()];
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: _appBar(),
-        body: _mainBody(),
-      ),
+    return Scaffold(
+      appBar: _appBar(),
+      body: _mainBody(),
+      bottomNavigationBar: _bottomNavigationBar(),
     );
   }
 
@@ -36,47 +36,61 @@ class MainPageState extends State<MainPage> {
         fontSize: 17,
       ),
       centerTitle: true,
-      bottom: const TabBar(
-        indicatorColor: _secondaryColor,
-        indicatorWeight: 5,
-        tabs: [
-          Tab(
-              icon: Icon(
-            Icons.search_rounded,
-            color: _secondaryColor,
-          )),
-          Tab(icon: Icon(Icons.map_sharp, color: _secondaryColor)),
-        ],
-      ),
     );
   }
 
   Widget _mainBody() {
-    return const TabBarView(
-      children: [
-        SearchLocation(),
-        MapPage(),
-      ],
+    return SafeArea(
+      child: pages[_currentIndex],
     );
   }
 
-  Widget buildMenuItem(
-      {required String text, required IconData icon, VoidCallback? onClicked}) {
-    const color = _secondaryColor;
-
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: color,
-      ),
-      title: Text(
-        text,
-        style: const TextStyle(
-          color: _secondaryColor,
+  Widget _bottomNavigationBar() {
+    return NavigationBarTheme(
+      data: NavigationBarThemeData(
+        indicatorColor: _secondaryColor,
+        labelTextStyle: MaterialStateProperty.all(
+          const TextStyle(
+            color: _secondaryColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
-      hoverColor: _secondaryColor,
-      onTap: onClicked,
+      child: NavigationBar(
+        height: 90,
+        backgroundColor: _mainColor,
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (int newIndex) {
+          setState(() {
+            _currentIndex = newIndex;
+          });
+        },
+        destinations: const [
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.search,
+              color: _mainColor,
+            ),
+            icon: Icon(
+              Icons.search_outlined,
+              color: _secondaryColor,
+            ),
+            label: 'Search',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.location_on_outlined,
+              color: _mainColor,
+            ),
+            icon: Icon(
+              Icons.location_on,
+              color: _secondaryColor,
+            ),
+            label: 'Maps',
+          ),
+        ],
+      ),
     );
   }
 }
