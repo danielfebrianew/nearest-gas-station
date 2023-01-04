@@ -8,7 +8,7 @@ class MapBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const _secondaryColor = Color(0xffB3D1CB);
+    const secondaryColor = Color(0xffB3D1CB);
 
     final address = place.displayName
         .substring(place.displayName.indexOf(",") + 1, place.displayName.length)
@@ -24,7 +24,7 @@ class MapBottomSheet extends StatelessWidget {
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
         ),
-        color: _secondaryColor,
+        color: secondaryColor,
       ),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
